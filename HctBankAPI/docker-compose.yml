@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  hct-bank:
+    image: hct-image
+    ports:
+      - 8080:8080
+    container_name: hct-container
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB}
+      SPRING_DATASOURCE_USERNAME: ${USER}
+      SPRING_DATASOURCE_PASSWORD: ${PASSWORD}
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
+    depends_on:
+      - db
+
+  db:
+    image: "mysql:${TAG}"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${PASSWORD}"
+      MYSQL_DATABASE: "${DB}"
+    ports:
+      - "3307:3306"
