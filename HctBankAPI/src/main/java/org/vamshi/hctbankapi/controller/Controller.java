@@ -24,7 +24,6 @@ public class Controller {
     @Autowired
     CustAccountService custAccountService;
 
-
     @Autowired
     GetBalanceService getBalanceService;
 
@@ -34,9 +33,6 @@ public class Controller {
     @Autowired
     CustAccMapRepo custAccMapRepo;
 
-    //post -- sending to DB
-    //get -- getting DB
-//http://locathost/8080/AcoounOP
     @PostMapping("/AccountOpening")
     public CustResponse openAccount(@RequestBody CustDetails account) {
         return custAccountService.OpenCustomerAccount(account);
